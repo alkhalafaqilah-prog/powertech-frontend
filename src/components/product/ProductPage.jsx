@@ -6,7 +6,7 @@ import api from "../../api"
 import { BASE_URL } from "../../api"
 import styles from "../Home/HomeCard.module.css"
 
-const ProductPage = () => {
+const ProductPage = ({setNumberCartItems}) => {
 
     const {slug } = useParams ()
     const [product, setProduct] = useState({})
@@ -37,6 +37,8 @@ const ProductPage = () => {
         .then(res =>{
             console.log(res.data)
             setInCart(true)
+            // This code is to increment the no. of cart items
+            setNumberCartItems(curr => curr + 1 )
         })
 
         .catch(err =>{
