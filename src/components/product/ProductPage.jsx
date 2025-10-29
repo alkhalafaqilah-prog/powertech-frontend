@@ -26,7 +26,7 @@ const ProductPage = () => {
             console.log(err.message)
             setLoading(false)
         } )
-    },[])
+    },[slug])
 
     if (loading){
     return <ProductPagePlaceHolder />
@@ -69,7 +69,7 @@ const ProductPage = () => {
         </div>
     </section>
 
-    <RelatedProducts products={similarProducts}/>
+    <RelatedProducts products={similarProducts} />
     </div>
 )
 }
