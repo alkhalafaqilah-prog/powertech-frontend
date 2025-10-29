@@ -46,3 +46,9 @@
     color: black;
       /* color: #6c757d;  Bootstrap's text-muted color */
 }
+
+.priceColor {
+    color: #28a745; 
+    font-weight: bold;
+    font-size: 1.1em;
+}
