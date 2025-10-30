@@ -2,7 +2,7 @@ import { useState } from "react"
 import { BASE_URL } from "../../api"
 import api from "../../api"
 
-const CartItem = ({item, setCartTotal, cartitems}) => {
+const CartItem = ({item, setCartTotal, cartitems, setNumberCartItems,setCartNumItems}) => {
 
     const [quantity, setQuantity] = useState(item.quantity)
     
@@ -13,7 +13,18 @@ const CartItem = ({item, setCartTotal, cartitems}) => {
         api.patch("update_quantity/", itemData)
         .then(res => {
             console.log(res.data)
-            setCartTotal(cartitems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem))
+            setCartTotal(cartitems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem)
+            .reduce((acc, curr) => acc + curr.total, 0))
+
+            //Updating the number of cart items in frontend without the need to refreah
+            const newTotalQuantity = cartitems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem)
+            .reduce((acc, curr) => acc + curr.quantity, 0)
+
+            // Update the Navbar count
+            setNumberCartItems(newTotalQuantity)
+            
+            // Update the CartPage heading count 
+            setCartNumItems(newTotalQuantity)
         })
 
         .catch(err =>{
