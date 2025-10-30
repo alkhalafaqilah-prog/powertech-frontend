@@ -1,6 +1,25 @@
+import { useState } from "react"
 import { BASE_URL } from "../../api"
+import api from "../../api"
 
-const CartItem = ({item}) => {
+const CartItem = ({item, setCartTotal, cartitems}) => {
+
+    const [quantity, setQuantity] = useState(item.quantity)
+    
+    // Variable for sending the item id & quantity from frontend to backend
+    const itemData = {quantity: quantity, item_id: item.id}
+
+    function updateCartitem(){
+        api.patch("update_quantity/", itemData)
+        .then(res => {
+            console.log(res.data)
+            setCartTotal(cartitems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem))
+        })
+
+        .catch(err =>{
+            console.log(err.message)
+        })
+    }
 
     return (
     <div className="col-md-12">
@@ -24,10 +43,12 @@ const CartItem = ({item}) => {
                 type="number"
                 min="1"
                 className="form-control me-3"
-                value="1"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value) }
                 style={{ width: '70px' }}
             />
             <button className="btn btn-sm mx-2" 
+            onClick={updateCartitem}
             style={{backgroundColor: "#008080", color:"white"}}>
                 Update
                 </button>

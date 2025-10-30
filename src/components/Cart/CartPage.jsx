@@ -43,7 +43,7 @@ const CartPage = () => {
     <h5 className="mb-4">{`Shopping Cart (${cartNumItems} items)`}</h5>
     <div className="row">
         <div className="col-md-8">
-            {cartitems.map(item => <CartItem key={item.id} item={item}/>)}
+            {cartitems.map(item => <CartItem key={item.id} item={item} cartitems={cartitems} setCartTotal={setCartTotal}/>)}
         
         </div>
 
