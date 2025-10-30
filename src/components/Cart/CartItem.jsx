@@ -3,7 +3,7 @@ import { BASE_URL } from "../../api"
 import api from "../../api"
 import { toast } from "react-toastify"
 
-const CartItem = ({item, setCartTotal, cartitems, setNumberCartItems}) => {
+const CartItem = ({item, setCartTotal, setCartItems ,cartitems, setNumberCartItems}) => {
 
     const [quantity, setQuantity] = useState(item.quantity)
     const [loading, setLoading] = useState(false)
@@ -16,9 +16,18 @@ const CartItem = ({item, setCartTotal, cartitems, setNumberCartItems}) => {
         const confirmDelete = window.confirm("Remove item from cart?")
 
         if(confirmDelete){
-            api.post("delete_cartitem", itemID)
+            api.post("delete_cartitem/", itemID)
             .then(res =>{
                 console.log(res.data)
+                toast.success("Cart item deleted successfully!")
+                setCartItems(cartitems.filter(cartitem => cartitem.id != item.id))
+
+                setCartTotal(cartitems.filter((cartitem) => cartitem.id != item.id)
+                .reduce((acc, curr) => acc + curr.total, 0))
+
+                //Updating the number of cart items in frontend without the need to refreah
+                setNumberCartItems(cartitems.filter((cartitem) => cartitem.id != item.id)
+                .reduce((acc, curr) => acc + curr.quantity, 0))
             })
 
             .catch(err => {
@@ -33,7 +42,7 @@ const CartItem = ({item, setCartTotal, cartitems, setNumberCartItems}) => {
         .then(res => {
             console.log(res.data)
             setLoading(false)
-            toast.success("CartItem updated successfully!")
+            toast.success("Cart Item updated successfully!")
             setCartTotal(cartitems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem)
             .reduce((acc, curr) => acc + curr.total, 0))
 
