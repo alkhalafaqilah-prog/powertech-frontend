@@ -3,6 +3,7 @@ import MainLayout from "./Layout/MainLayout"
 import HomePage from "./components/Home/HomePage"
 import NotFoundPage from "./components/ui/NotFoundPage"
 import ProductPage from "./components/product/ProductPage"
+import CartPage from "./components/Cart/CartPage"
 import { useEffect, useState } from "react"
 import api from "./api"
 

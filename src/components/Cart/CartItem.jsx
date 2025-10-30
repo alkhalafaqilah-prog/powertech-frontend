@@ -1,6 +1,6 @@
+import { BASE_URL } from "../../api"
 
-
-const CartItem = () => {
+const CartItem = ({item}) => {
 
     return (
     <div className="col-md-12">
@@ -10,14 +10,14 @@ const CartItem = () => {
             style={{ backgroundColor: '#f8f9fa', borderRadius: '8px' }}
         >
             <img
-            src=""
+            src={`${BASE_URL}${item.product.img}`}
             alt="Product Image"
             className="img-fluid"
             style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '5px' }}
             />
             <div className="ms-3 flex-grow-1">
-            <h5 className="mb-1">A pair of shoes</h5>
-            <p className="mb-0 text-muted">$50</p>
+            <h5 className="mb-1">{item.product.name}</h5>
+            <p className="mb-0 text-muted">{`${item.product.price} SAR`}</p>
             </div>
             <div className="d-flex align-items-center">
             <input

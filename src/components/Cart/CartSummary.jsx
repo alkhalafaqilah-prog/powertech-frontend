@@ -25,7 +25,7 @@ const CartSummary = () => {
         <Link to="/checkout">
         <button
             className="btn btn-primary w-100"
-            style={{ backgroundColor: '#6050DC', borderColor: '#6050DC' }}
+            style={{ backgroundColor: '#008080', borderColor: '#008080' }}
         >
             Proceed to Checkout
         </button>
