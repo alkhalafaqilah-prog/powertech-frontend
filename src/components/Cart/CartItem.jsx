@@ -1,34 +1,50 @@
 import { useState } from "react"
 import { BASE_URL } from "../../api"
 import api from "../../api"
+import { toast } from "react-toastify"
 
-const CartItem = ({item, setCartTotal, cartitems, setNumberCartItems,setCartNumItems}) => {
+const CartItem = ({item, setCartTotal, cartitems, setNumberCartItems}) => {
 
     const [quantity, setQuantity] = useState(item.quantity)
-    
+    const [loading, setLoading] = useState(false)
+
     // Variable for sending the item id & quantity from frontend to backend
     const itemData = {quantity: quantity, item_id: item.id}
+    const itemID = {item_id: item.id}
+
+    function deleteCartitem(){
+        const confirmDelete = window.confirm("Remove item from cart?")
+
+        if(confirmDelete){
+            api.post("delete_cartitem", itemID)
+            .then(res =>{
+                console.log(res.data)
+            })
+
+            .catch(err => {
+                console.log(err.message)
+            })
+        }
+    }
 
     function updateCartitem(){
+        setLoading(true)
         api.patch("update_quantity/", itemData)
         .then(res => {
             console.log(res.data)
+            setLoading(false)
+            toast.success("CartItem updated successfully!")
             setCartTotal(cartitems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem)
             .reduce((acc, curr) => acc + curr.total, 0))
 
             //Updating the number of cart items in frontend without the need to refreah
-            const newTotalQuantity = cartitems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem)
-            .reduce((acc, curr) => acc + curr.quantity, 0)
-
-            // Update the Navbar count
-            setNumberCartItems(newTotalQuantity)
-            
-            // Update the CartPage heading count 
-            setCartNumItems(newTotalQuantity)
+            setNumberCartItems(cartitems.map((cartitem) => cartitem.id === item.id? res.data.data : cartitem)
+            .reduce((acc, curr) => acc + curr.quantity, 0))
         })
 
         .catch(err =>{
             console.log(err.message)
+            setLoading(false)
         })
     }
 
@@ -60,10 +76,10 @@ const CartItem = ({item, setCartTotal, cartitems, setNumberCartItems,setCartNumI
             />
             <button className="btn btn-sm mx-2" 
             onClick={updateCartitem}
-            style={{backgroundColor: "#008080", color:"white"}}>
-                Update
+            style={{backgroundColor: "#008080", color:"white"}} disabled={loading}>
+                {loading? "Updating" : "Update"}
                 </button>
-            <button className="btn btn-danger btn-sm" >Remove</button>
+            <button className="btn btn-danger btn-sm" onClick={deleteCartitem}>Remove</button>
             </div>
         </div>
 

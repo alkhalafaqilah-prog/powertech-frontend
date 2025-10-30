@@ -10,7 +10,6 @@ const CartPage = ({setNumberCartItems}) => {
 
     const [cartitems, setCartItems] = useState([])
     const [cartTotal, setCartTotal] = useState(0.00)
-    const [cartNumItems, setCartNumItems] = useState(0)
 
     const deliveryFee = 100.00
 
@@ -21,7 +20,6 @@ const CartPage = ({setNumberCartItems}) => {
             console.log(res.data)
             setCartItems(res.data.items)
             setCartTotal(res.data.sum_total)
-            setCartNumItems(res.data.num_of_items)
         })
 
         .catch(err => {
@@ -40,14 +38,13 @@ const CartPage = ({setNumberCartItems}) => {
     <div
     className="container my-3 py-3"
     style={{ height: "80vh", overflow: "scroll" }}>
-    <h5 className="mb-4">{`Shopping Cart (${cartNumItems} items)`}</h5>
+    <h5 className="mb-4">Shopping Cart</h5>
     <div className="row">
         <div className="col-md-8">
             {cartitems.map(item => <CartItem key={item.id} item={item} 
             cartitems={cartitems} 
             setCartTotal={setCartTotal}
             setNumberCartItems={setNumberCartItems}
-            setCartNumItems={setCartNumItems}
             />)}
         
         </div>
