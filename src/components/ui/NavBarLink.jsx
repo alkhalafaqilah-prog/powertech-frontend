@@ -5,53 +5,53 @@ const NavBarLink = () => {
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
     <li className="nav-item">
         <NavLink
-        to="/home"
+        to="/login"
         className={({ isActive }) =>
             isActive
             ? "nav-link active fw-semibold"
             : "nav-link fw-semibold"
         }
         >
-        Home
+        Login
         </NavLink>
     </li>
 
     <li className="nav-item">
         <NavLink
-        to="/"
+        to="/register"
         className={({ isActive }) =>
             isActive
             ? "nav-link active fw-semibold"
             : "nav-link fw-semibold"
         }
         >
-        Shop
+        Register
         </NavLink>
     </li>
 
     <li className="nav-item">
         <NavLink
-        to="/About"
+        to="/profile"
         className={({ isActive }) =>
             isActive
             ? "nav-link active fw-semibold"
             : "nav-link fw-semibold"
         }
         >
-        About
+        Hi, Admin
         </NavLink>
     </li>
 
     <li className="nav-item">
         <NavLink
-        to="/contact"
+        to="/logout"
         className={({ isActive }) =>
             isActive
             ? "nav-link active fw-semibold"
             : "nav-link fw-semibold"
         }
         >
-        Contact
+        Logout
         </NavLink>
     </li>
     </ul>
