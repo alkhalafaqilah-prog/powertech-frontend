@@ -1,11 +1,35 @@
 import React, {useState} from 'react'
 import { jwtDecode } from "jwt-decode"
+import api from '../../api'
 
 const ProtectedRoute = ({children}) => {
 
     const [isAuthorized, setIsAuthorized] = useState(null)
 
     async function refreshToken(){
+        
+        //To generate new access token
+        const refreshToken = localStorage.getItem("refresh")
+
+        try{
+
+            const res = await api.post("/token/refresh/", {
+                refresh: refreshToken,
+            });
+            if (res.status === 200) {
+                localStorage.setItem("access", res.data.access)
+                setIsAuthorized(true)
+            } else {
+                setIsAuthorized(false)
+            }
+
+        }
+
+        catch(error) {
+            console.log(error)
+            setIsAuthorized(false)
+        }
+
 
     }
 
