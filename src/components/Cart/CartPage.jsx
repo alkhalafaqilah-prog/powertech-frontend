@@ -1,37 +1,12 @@
-import { useEffect, useState } from "react"
 import CartItem from "./CartItem"
 import CartSummary from "./CartSummary"
-import api from "../../api"
 import Spinner from "../ui/Spinner"
+import useCartData from "../../hooks/useCartData"
 
 const CartPage = ({setNumberCartItems}) => {
 
-    // This is the cart_code stored in the frontend
-    const cart_code = localStorage.getItem("cart_code")
-
-    const [cartitems, setCartItems] = useState([])
-    const [cartTotal, setCartTotal] = useState(0.00)
-
-    const deliveryFee = 100.00
-
-    const [loading, setLoading] = useState(false)
-
-    // Linking the endpoints of the backend
-    useEffect(function(){
-        setLoading(true)
-        api.get(`get_cart?cart_code=${cart_code}`)
-        .then(res => {
-            console.log(res.data)
-            setLoading(false)
-            setCartItems(res.data.items)
-            setCartTotal(res.data.sum_total)
-        })
-
-        .catch(err => {
-            console.log(err.message)
-            setLoading(false)
-        })
-    },[])
+    const {cartitems, setCartItems, cartTotal, setCartTotal, loading, deliveryFee} = useCartData()
+    
 
     if(loading){
         return <Spinner loading={loading}/>

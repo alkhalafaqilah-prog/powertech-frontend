@@ -1,20 +1,22 @@
-const OrderItem = () => {
+import { BASE_URL } from "../../api"
+
+const OrderItem = ({cartitem}) => {
 
     return (
     <div className="d-flex justify-content-between align-items-center mb-3" style={{padding: "10px 0"}}>
     <div className="d-flex align-items-center">
     <img
-        src=""
+        src={`${BASE_URL}${cartitem.product.img}`}
         alt="Product Image"
         className="img-fluid"
         style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius:"5px" }}
     />
     <div className="ms-3">
-        <h6 className="mb-0">Product 1</h6>
-        <small>Quantity: 3</small>
+        <h6 className="mb-0">{cartitem.product.name}</h6>
+        <small>{`Quantity: ${cartitem.quantity}`}</small>
     </div>
     </div>
-    <h6>$50</h6>
+    <h6>{`${cartitem.product.price} SAR`}</h6>
     </div>
 )
 }

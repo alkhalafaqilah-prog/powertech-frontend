@@ -2,14 +2,14 @@ import { useState, useEffect } from "react"
 import api from "../api"
 
 function useCartData(){
-
+    // This is the cart_code stored in the frontend
     const cart_code = localStorage.getItem("cart_code")
     const [cartitems, setCartItems] = useState([])
     const [cartTotal, setCartTotal] = useState(0.00)
-    const [productCount, setProductCount] = useState(1)
-    const tax = 4.00
+    const deliveryFee = 100.00
     const [loading, setLoading] = useState(false)
 
+    // Linking the endpoints of the backend
     useEffect(function(){
         setLoading(true)
         api.get(`get_cart?cart_code=${cart_code}`)
@@ -18,17 +18,16 @@ function useCartData(){
             setLoading(false)
             setCartItems(res.data.items)
             setCartTotal(res.data.sum_total)
-            setProductCount(res.data.num_of_product)
         })
 
         .catch(err => {
             console.log(err.message)
             setLoading(false)
         })
-    }, [cart_code])
+    },[cart_code])
 
 
-    return  {cartitems, productCount, setCartItems, cartTotal, setCartTotal, loading, tax}
+    return  {cartitems, setCartItems, cartTotal, setCartTotal, loading, deliveryFee}
 
 }
 

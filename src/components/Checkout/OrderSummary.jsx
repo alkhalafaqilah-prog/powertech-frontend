@@ -1,8 +1,9 @@
 import OrderItem from "./OrderItem"
 import styles from "./OrderSummary.module.css"
 
-const OrderSummary = () => {
+const OrderSummary = ({cartitems, cartTotal, deliveryFee}) => {
 
+    const total = cartTotal + deliveryFee
 
     return (
     <div className="col-md-8">
@@ -14,16 +15,15 @@ const OrderSummary = () => {
 
         <div className='px-3' style={{height:"300px", overflow:"auto"}}>
 
-        <OrderItem />
-
-
+        {cartitems.map(cartitem => <OrderItem key={cartitem.id} cartitem={cartitem} />)}
+        
         </div>
 
 
         <hr />
         <div className="d-flex justify-content-between">
             <h6>Total</h6>
-            <h6>$504.00</h6>
+            <h6>{`${total} SAR`}</h6>
         </div>
         </div>
     </div>
