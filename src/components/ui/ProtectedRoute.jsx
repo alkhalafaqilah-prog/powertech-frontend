@@ -1,13 +1,20 @@
-import React, {useState} from 'react'
+import api from "../../api"
 import { jwtDecode } from "jwt-decode"
-import api from '../../api'
+import Spinner from "./Spinner"
+import { useState, useEffect } from "react"
+import { Navigate, useLocation } from "react-router-dom"
 
 const ProtectedRoute = ({children}) => {
 
     const [isAuthorized, setIsAuthorized] = useState(null)
+    const location = useLocation()
+
+    useEffect(function(){
+        auth().catch(() => setIsAuthorized(false))
+    }, [])
 
     async function refreshToken(){
-        
+
         //To generate new access token
         const refreshToken = localStorage.getItem("refresh")
 
@@ -55,8 +62,14 @@ const ProtectedRoute = ({children}) => {
 
     }
 
+    //This is to add loading effect
+    if(isAuthorized === null){
+        return <Spinner />
+    }
+
+
     return (
-    <div>ProtectedRoute</div>
+        isAuthorized ? children : <Navigate to="/login" state={{from: location}} replace />
     )
 }
 
