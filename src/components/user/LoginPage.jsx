@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext"
 
 const LoginPage = () => {
 
-    const {setIsAuthenticated} = useContext(AuthContext)
+    const {setIsAuthenticated, get_username} = useContext(AuthContext)
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -33,6 +33,7 @@ const LoginPage = () => {
             setPassword("")
             setLoading(false)
             setIsAuthenticated(true)
+            get_username()
             setError("")
 
             const from = location?.state?.from.pathname || "/"

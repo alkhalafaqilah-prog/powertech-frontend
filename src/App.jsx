@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ui/ProtectedRoute"
 import { useEffect, useState } from "react"
 import api from "./api"
 import { AuthProvider } from "./context/AuthContext"
+import UserProfilePage from "./components/user/UserProfilePage"
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
   },[])
 
   return (
-    
+
   <AuthProvider>
   <BrowserRouter>
 
@@ -45,6 +46,7 @@ function App() {
     <Route path="cart" element={<CartPage setNumberCartItems={setNumberCartItems}/>} />
     <Route path="checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
     <Route path="login" element={<LoginPage />} />
+    <Route path="profile" element={<UserProfilePage/>}/>
     <Route path="*" element={<NotFoundPage />} />
     </Route>
   </Routes>
