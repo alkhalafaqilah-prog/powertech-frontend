@@ -9,6 +9,7 @@ import LoginPage from "./components/user/LoginPage"
 import ProtectedRoute from "./components/ui/ProtectedRoute"
 import { useEffect, useState } from "react"
 import api from "./api"
+import { AuthProvider } from "./context/AuthContext"
 
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
   },[])
 
   return (
+    
+  <AuthProvider>
   <BrowserRouter>
 
   <Routes>
@@ -47,6 +50,7 @@ function App() {
   </Routes>
 
   </BrowserRouter>
+  </AuthProvider>
   )
 }
 

@@ -1,11 +1,14 @@
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
 import "./LoginPage.css"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import api from "../../api"
 import Error from "../ui/Error"
+import { AuthContext } from "../../context/AuthContext"
 
 
 const LoginPage = () => {
+
+    const {setIsAuthenticated} = useContext(AuthContext)
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -29,9 +32,10 @@ const LoginPage = () => {
             setUsername("")
             setPassword("")
             setLoading(false)
+            setIsAuthenticated(true)
             setError("")
 
-            const from = location.state.from.pathname || "/"
+            const from = location?.state?.from.pathname || "/"
             navigate(from, {replace:true})
         })
 
