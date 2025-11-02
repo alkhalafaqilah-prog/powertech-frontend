@@ -11,6 +11,7 @@ import { useEffect, useState } from "react"
 import api from "./api"
 import { AuthProvider } from "./context/AuthContext"
 import UserProfilePage from "./components/user/UserProfilePage"
+import PaymentStatusPage from "./components/payments/PaymentStatusPage"
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
     <Route path="login" element={<LoginPage />} />
     <Route path="profile" element={<UserProfilePage/>}/>
     <Route path="*" element={<NotFoundPage />} />
+    <Route path="payment-status" element={<PaymentStatusPage/>}/>
     </Route>
   </Routes>
 
