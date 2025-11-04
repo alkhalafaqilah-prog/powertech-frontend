@@ -1,6 +1,5 @@
 import styles from "./PaymentSection.module.css"
 import { BsFillCreditCard2FrontFill } from "react-icons/bs"
-import { FaCcPaypal } from "react-icons/fa"
 import api from "../../api"
 import { useState } from "react"
 
@@ -29,11 +28,6 @@ const PaymentSection = () => {
         <h5>Payment Options</h5>
     </div>
     <div className="card-body">
-        {/* PayPal Button */}
-        <button className={`btn btn-primary w-100 mb-3 ${styles.paypalButton}`} id="paypal-button">
-        <FaCcPaypal style={{fontSize:"30px"}} /> Pay with PayPal
-        </button>
-
         {/* Flutterwave Button */}
         <button className={`btn btn-warning w-100 ${styles.flutterwaveButton}`} onClick={makePayment} id="flutterwave-button">
         <BsFillCreditCard2FrontFill  style={{fontSize:"30px"}} /> Pay with Flutterwave

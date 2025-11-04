@@ -6,6 +6,7 @@ import ProductPage from "./components/product/ProductPage"
 import CartPage from "./components/Cart/CartPage"
 import CheckoutPage from "./components/Checkout/CheckoutPage"
 import LoginPage from "./components/user/LoginPage"
+import SignUpPage from "./components/user/SignUpPage"
 import ProtectedRoute from "./components/ui/ProtectedRoute"
 import { useEffect, useState } from "react"
 import api from "./api"
@@ -47,6 +48,7 @@ function App() {
     <Route path="cart" element={<CartPage setNumberCartItems={setNumberCartItems}/>} />
     <Route path="checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
     <Route path="login" element={<LoginPage />} />
+    <Route path="signup" element={<SignUpPage />} />
     <Route path="profile" element={<UserProfilePage/>}/>
     <Route path="*" element={<NotFoundPage />} />
     <Route path="payment-status" element={<PaymentStatusPage setNumberCartItems={setNumberCartItems}/>}/>
