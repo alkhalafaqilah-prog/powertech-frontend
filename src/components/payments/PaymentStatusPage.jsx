@@ -1,12 +1,35 @@
-import {Link} from "react-router-dom"
-import { useState } from "react";
+import {Link, useLocation} from "react-router-dom"
+import { useState, useEffect } from "react"
+import api from "../../api";
 
-const PaymentStatusPage = () => {
+const PaymentStatusPage = ({setNumberCartItems}) => {
 
     const [statusMessage, setStatusMessage] = useState('Verifying your payment');
     const [statusSubMessage, setStatusSubMessage] = useState('Wait a momment, your payment is being verified!')
+    const location = useLocation()
 
+    //Send or get the data to/from the backend (from the payment_callback view
+    useEffect(function(){
 
+        const queryParams = new URLSearchParams(location.search)
+        const status = queryParams.get('status')
+        const txRef = queryParams.get('tx_ref')
+        const transactionId = queryParams.get('transaction_id')
+
+        if (status && txRef && transactionId){
+            api.post(`payment_callback/?status=${status}&tx_ref=${txRef}&transaction_id=${transactionId}`)
+            .then(res =>{
+                setStatusMessage(res.data.message)
+                setStatusSubMessage(res.data.subMessage)
+                //When the payment is successful we will remove the cart code and its items
+                localStorage.removeItem("cart_code")
+                setNumberCartItems(0)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+        }
+    },[])
 
     return (
     <header className="py-5" style={{backgroundColor: "#008080"}}>
