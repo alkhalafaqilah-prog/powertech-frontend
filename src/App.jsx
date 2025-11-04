@@ -13,6 +13,7 @@ import api from "./api"
 import { AuthProvider } from "./context/AuthContext"
 import UserProfilePage from "./components/user/UserProfilePage"
 import PaymentStatusPage from "./components/payments/PaymentStatusPage"
+import EditProfilePage from "./components/user/EditProfilePage"
 
 
 function App() {
@@ -49,7 +50,8 @@ function App() {
     <Route path="checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
     <Route path="login" element={<LoginPage />} />
     <Route path="signup" element={<SignUpPage />} />
-    <Route path="profile" element={<UserProfilePage/>}/>
+    <Route path="profile" element={<ProtectedRoute><UserProfilePage/></ProtectedRoute>}/>
+    <Route path="profile/edit" element={<ProtectedRoute><EditProfilePage /></ProtectedRoute>} />
     <Route path="*" element={<NotFoundPage />} />
     <Route path="payment-status" element={<PaymentStatusPage setNumberCartItems={setNumberCartItems}/>}/>
     </Route>

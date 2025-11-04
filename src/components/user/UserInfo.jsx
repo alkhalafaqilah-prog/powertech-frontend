@@ -1,7 +1,11 @@
 import styles from "./UserInfo.module.css"
 import pic from "../../assets/profile_pic.jpg"
+import { useNavigate } from 'react-router-dom'
 
 const UserInfo = ({userInfo}) => {
+
+    const navigate = useNavigate()
+
     return (
     <div className="row mb-4">
     <div className={`col-md-3 py-3 card ${styles.textCenter}`}>
@@ -12,7 +16,11 @@ const UserInfo = ({userInfo}) => {
     />
     <h4>{`${userInfo.first_name} ${userInfo.last_name}`}</h4>
     <p className="text-muted">{userInfo.email}</p>
-    <button className="btn  mt-2" style={{ backgroundColor: '#008080', color: 'white' }}>Edit Profile</button>
+    <button className="btn  mt-2" style={{ backgroundColor: '#008080', color: 'white' }} 
+    onClick={() => navigate("/profile/edit")}>
+        Edit Profile
+    </button>
+    
     </div>
     <div className="col-md-9">
         <div className="card">
