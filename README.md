@@ -1,16 +1,47 @@
-# React + Vite
+# PowerTech E-Commerce Full-Stack Application (Django + React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. Project & Repository Description 
 
-Currently, two official plugins are available:
+The idea of the project is to develop an E-commerce website focused on Electrical industry including various product categories such as protection devices, Cables & wiring, and safety tools etc. The project showcase my skills acquired during the GA X SDA Software Engineering BootCamp. The backend of the PowerTech website was developed using Python, Django, and PostgreSQL, and the while the frontend was built with React and bootstrap CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+## 2. Tech Stack
 
-## React Compiler
+**Backend:** Python, Django, PostgreSQL
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Frontend:** React and bootstrap CSS
 
-## Expanding the ESLint configuration
+**Dev Tools:** Git bash and GitHub
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+## 3. Back End Repo Link
+
+https://github.com/alkhalafaqilah-prog/powertech-frontend
+
+---
+## 4. Link to Deployed Site
+
+ Coming Soon ⏳
+
+---
+
+## 5. Installation Instructions as Needed (docker)
+
+ Coming Soon ⏳
+
+---
+
+## 6. IceBox Features
+
+**1-** I want to add a dropdown list in the Navbar to show the products categories. 
+
+**2-** I want to modify the home page css and add animations.
+
+**3-** I want to add more products categories.
+
+**4-** Implement more payments methods.
+
+**5-** Add delivery tracking system and shipment companies.
+
+**6-** Add an sales assistance Chatbot similar to an FAQ section. 
+
