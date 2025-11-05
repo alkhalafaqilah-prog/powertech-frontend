@@ -47,7 +47,8 @@ const EditProfilePage = () => {
 
     return (
         <div className="container my-5">
-            <h2>Edit Your Profile</h2>
+            <div className="login-card shadow">
+            <h2 className="login-title">Edit Your Profile</h2>
             <form onSubmit={handleSubmit}>
 
                 <div className="mb-3">
@@ -78,7 +79,13 @@ const EditProfilePage = () => {
 
                 <div className="mb-3">
                     <label htmlFor="address" className="form-label">Address</label>
-                    <input type="text" className="form-control" id="address" value={formData.address || ''} onChange={handleChange} /> 
+                    <textarea 
+                        className="form-control" 
+                        id="address" 
+                        rows="3"
+                        value={formData.address || ''} 
+                        onChange={handleChange} 
+                    />
                 </div>
 
 
@@ -94,10 +101,12 @@ const EditProfilePage = () => {
                 </div>
                 
 
-
+                <div className="btn-container">
                 <button type="submit" className="btn btn-primary me-2">Save Changes</button>
                 <button type="button" className="btn btn-secondary" onClick={() => navigate("/profile")}>Cancel</button>
+                </div>
             </form>
+            </div>
         </div>
     )
 }

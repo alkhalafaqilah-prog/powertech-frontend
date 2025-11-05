@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import MainLayout from "./Layout/MainLayout"
+import MainPage from "./components/Main/MainPage"
 import HomePage from "./components/Home/HomePage"
 import NotFoundPage from "./components/ui/NotFoundPage"
 import ProductPage from "./components/product/ProductPage"
@@ -16,6 +17,8 @@ import PaymentStatusPage from "./components/payments/PaymentStatusPage"
 import EditProfilePage from "./components/user/EditProfilePage"
 
 
+// Source: Code with Clinton YT , Code with curious & geeksforgeek
+//
 function App() {
 
   const [numCartItems, setNumberCartItems] = useState(0)
@@ -45,6 +48,7 @@ function App() {
   <Routes>
     <Route path="/" element={<MainLayout numCartItems= {numCartItems} />}>
     <Route index element={<HomePage />} />
+    <Route path="main" element={<MainPage />} />
     <Route path="products/:slug" element={<ProductPage setNumberCartItems={setNumberCartItems}/>} />
     <Route path="cart" element={<CartPage setNumberCartItems={setNumberCartItems}/>} />
     <Route path="checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />

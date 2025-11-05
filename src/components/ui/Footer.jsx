@@ -8,10 +8,8 @@ return (
     <div className="container text-center">
       {/* Quick Links Section */}
     <div className="mb-2">
-        <a href="#" className="text-white text-decoration-none mx-2">Home</a>
-        <a href="#" className="text-white text-decoration-none mx-2">About</a>
-        <a href="#" className="text-white text-decoration-none mx-2">Shop</a>
-        <a href="#" className="text-white text-decoration-none mx-2">Contact</a>
+        <a href="main" className="text-white text-decoration-none mx-2">Home</a>
+        <a href="/" className="text-white text-decoration-none mx-2">Shop</a>
     </div>
 
       {/* Social Media Icons Section */}
