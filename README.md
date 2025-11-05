@@ -44,4 +44,3 @@ https://github.com/alkhalafaqilah-prog/powertech-frontend
 **5-** Add delivery tracking system and shipment companies.
 
 **6-** Add an sales assistance Chatbot similar to an FAQ section. 
-
